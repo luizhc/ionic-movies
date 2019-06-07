@@ -16,7 +16,7 @@ export class IntroPage implements OnInit {
   }
 
   goToFeed() {
-    this.router.navigate(['feed']);
+    this.router.navigate(['movie']);
   }
 
 }
