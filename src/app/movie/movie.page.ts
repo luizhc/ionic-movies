@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
+import { LoadingService } from '../services/loading.service';
 import { MovieService } from '../services/movie.service';
 
 @Component({
@@ -7,18 +8,22 @@ import { MovieService } from '../services/movie.service';
   templateUrl: './movie.page.html',
   styleUrls: ['./movie.page.scss'],
 })
-export class MoviePage implements OnInit {
+export class MoviePage {
 
   movies: any;
 
-  constructor(private movieService: MovieService) { }
+  constructor(
+    private movieService: MovieService,
+    private loadingService: LoadingService
+  ) { }
 
-  ngOnInit() {
+  ionViewDidEnter() {
+    this.loadingService.present('Loading movies...');
     this.movieService.getPopularMovies()
       .subscribe(
         (data: any) => {
-          console.log(data);
           this.movies = data.results;
+          this.loadingService.dismiss();
         }
       );
   }

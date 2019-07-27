@@ -15,8 +15,8 @@ export class IntroPage implements OnInit {
   ngOnInit() {
   }
 
-  goToFeed() {
-    this.router.navigate(['movie']);
+  goToTabs() {
+    this.router.navigate(['tabs/tabs/tab5']);
   }
 
 }

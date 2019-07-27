@@ -9,7 +9,7 @@
   <ion-card *ngFor="let movie of movies">
     <ion-item>
       <ion-avatar item-start>
-        <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path">
+        <img [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w500/' + movie.poster_path : ''">
       </ion-avatar>
       <ion-card-header>
         <ion-card-title>{{ movie.original_title }}</ion-card-title>
@@ -17,7 +17,7 @@
       </ion-card-header>
     </ion-item>
 
-    <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path">
+    <img [src]="movie.backdrop_path ? 'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path : ''">
 
     <ion-card-content>
       {{ movie.overview }}
