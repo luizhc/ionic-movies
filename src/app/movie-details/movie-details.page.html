@@ -1,16 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Movies</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/movies"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Movie Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
-  <ion-refresher pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event.target)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
-  <ion-card *ngFor="let movie of movies">
+  <ion-card *ngIf="movie">
     <ion-item>
       <ion-avatar item-start>
         <img [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w500/' + movie.poster_path : ''">
@@ -23,7 +22,9 @@
 
     <img [src]="movie.backdrop_path ? 'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path : ''">
 
-    <ion-button expand="full" fill="clear" (click)="goDetails(movie.id)">Details</ion-button>
+    <ion-card-content>
+      {{ movie.overview }}
+    </ion-card-content>
 
   </ion-card>
 

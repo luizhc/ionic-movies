@@ -14,4 +14,8 @@ export class MovieService {
     return this.http.get(`${API_MOVIEDB}/movie/popular?api_key=${APIKEY_MOVIEDB}`);
   }
 
+  getById(id) {
+    return this.http.get(`${API_MOVIEDB}/movie/${id}?api_key=${APIKEY_MOVIEDB}`);
+  }
+
 }

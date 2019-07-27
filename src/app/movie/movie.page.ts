@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { LoadingService } from '../services/loading.service';
 import { MovieService } from '../services/movie.service';
@@ -16,7 +17,8 @@ export class MoviePage {
 
   constructor(
     private movieService: MovieService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private router: Router
   ) { }
 
   ionViewDidEnter() {
@@ -50,6 +52,10 @@ export class MoviePage {
     this.refresher = refresher;
     this.isRefreshing = true;
     this.loadMovies();
+  }
+
+  goDetails(id) {
+    this.router.navigate([`movie/${id}`]);
   }
 
 }

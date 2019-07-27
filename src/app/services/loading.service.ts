@@ -6,7 +6,7 @@ import { LoadingController } from '@ionic/angular';
 })
 export class LoadingService {
 
-  isLoading: boolean;
+  private isLoading: boolean;
 
   constructor(private loadingController: LoadingController) { }
 
