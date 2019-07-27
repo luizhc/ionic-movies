@@ -6,6 +6,11 @@
 
 <ion-content padding>
 
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event.target)">
+    <ion-refresher-content pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let movie of movies">
     <ion-item>
       <ion-avatar item-start>

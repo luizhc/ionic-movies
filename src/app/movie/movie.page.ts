@@ -11,6 +11,8 @@ import { MovieService } from '../services/movie.service';
 export class MoviePage {
 
   movies: any;
+  refresher: any;
+  isRefreshing: boolean;
 
   constructor(
     private movieService: MovieService,
@@ -18,14 +20,36 @@ export class MoviePage {
   ) { }
 
   ionViewDidEnter() {
+    this.loadMovies();
+  }
+
+  loadMovies() {
     this.loadingService.present('Loading movies...');
     this.movieService.getPopularMovies()
       .subscribe(
         (data: any) => {
+          console.log(data);
           this.movies = data.results;
           this.loadingService.dismiss();
+          if (this.isRefreshing) {
+            this.refresher.complete();
+            this.isRefreshing = false;
+          }
+        },
+        error => {
+          this.loadingService.dismiss();
+          if (this.isRefreshing) {
+            this.refresher.complete();
+            this.isRefreshing = false;
+          }
         }
       );
+  }
+
+  doRefresh(refresher) {
+    this.refresher = refresher;
+    this.isRefreshing = true;
+    this.loadMovies();
   }
 
 }
