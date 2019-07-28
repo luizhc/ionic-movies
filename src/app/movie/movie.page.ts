@@ -14,6 +14,8 @@ export class MoviePage {
   movies: any;
   refresher: any;
   isRefreshing: boolean;
+  page = 1;
+  infiniteScroll: any;
 
   constructor(
     private movieService: MovieService,
@@ -25,14 +27,22 @@ export class MoviePage {
     this.loadMovies();
   }
 
-  loadMovies() {
-    this.loadingService.present('Loading movies...');
-    this.movieService.getPopularMovies()
+  loadMovies(newPage: boolean = false) {
+    if (!newPage) {
+      this.loadingService.present('Loading movies...');
+    }
+    this.movieService.getPopularMovies(this.page)
       .subscribe(
         (data: any) => {
-          console.log(data);
-          this.movies = data.results;
-          this.loadingService.dismiss();
+          if (newPage) {
+            this.movies = this.movies.concat(data.results);
+            this.infiniteScroll.complete();
+          } else {
+            this.movies = data.results;
+          }
+          if (!newPage) {
+            this.loadingService.dismiss();
+          }
           if (this.isRefreshing) {
             this.refresher.complete();
             this.isRefreshing = false;
@@ -52,6 +62,12 @@ export class MoviePage {
     this.refresher = refresher;
     this.isRefreshing = true;
     this.loadMovies();
+  }
+
+  doInfinite(infiniteScroll) {
+    this.infiniteScroll = infiniteScroll;
+    this.page++;
+    this.loadMovies(true);
   }
 
   goDetails(id) {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { API_MOVIEDB, APIKEY_MOVIEDB } from './../../environments/constants';
+import { API_MOVIEDB, APIKEY_MOVIEDB, LANGUAGE_PORTUGUESE, LANGUAGE_ENGLISH } from './../../environments/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +10,12 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  getPopularMovies() {
-    return this.http.get(`${API_MOVIEDB}/movie/popular?api_key=${APIKEY_MOVIEDB}`);
+  getPopularMovies(page = 1) {
+    return this.http.get(`${API_MOVIEDB}/movie/popular?page=${page}&language=${LANGUAGE_ENGLISH}&api_key=${APIKEY_MOVIEDB}`);
   }
 
   getById(id) {
-    return this.http.get(`${API_MOVIEDB}/movie/${id}?api_key=${APIKEY_MOVIEDB}`);
+    return this.http.get(`${API_MOVIEDB}/movie/${id}?language=${LANGUAGE_ENGLISH}&api_key=${APIKEY_MOVIEDB}`);
   }
 
 }
