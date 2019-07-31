@@ -10,14 +10,14 @@ export class LoadingService {
 
   constructor(private loadingController: LoadingController) { }
 
-  async present(msg: string = '') {
+  async present(message: string = '') {
     this.isLoading = true;
     return await this.loadingController.create({
-      message: msg
-    }).then(a => {
-      a.present().then(() => {
+      message: message
+    }).then(res => {
+      res.present().then(() => {
         if (!this.isLoading) {
-          a.dismiss();
+          res.dismiss();
         }
       });
     });
