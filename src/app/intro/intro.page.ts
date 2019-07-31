@@ -1,6 +1,4 @@
-import { TabsPage } from './../tabs/tabs.page';
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +8,9 @@ import { Router } from '@angular/router';
 })
 export class IntroPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }

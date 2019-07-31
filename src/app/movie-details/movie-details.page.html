@@ -12,7 +12,8 @@
   <ion-card *ngIf="movie">
     <ion-item>
       <ion-avatar item-start>
-        <img [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w500/' + movie.poster_path : ''">
+        <img
+          [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w500/' + movie.poster_path : 'assets/img/movie.jpg'">
       </ion-avatar>
       <ion-card-header>
         <ion-card-title>{{ movie.title }}</ion-card-title>
@@ -20,10 +21,11 @@
       </ion-card-header>
     </ion-item>
 
-    <img [src]="movie.backdrop_path ? 'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path : ''">
+    <img
+      [src]="movie.backdrop_path ? 'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path : 'assets/img/movie.jpg'">
 
     <ion-card-content class="ion-text-justify">
-      {{ movie.overview }}
+      {{ movie.overview ? movie.overview : 'There\'s no overview for this movie.' }}
     </ion-card-content>
 
   </ion-card>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { API_MOVIEDB, APIKEY_MOVIEDB, LANGUAGE_PORTUGUESE, LANGUAGE_ENGLISH } from './../../environments/constants';
+import { API_MOVIEDB, APIKEY_MOVIEDB, LANGUAGE_ENGLISH } from './../../environments/constants';
 
 @Injectable({
   providedIn: 'root'

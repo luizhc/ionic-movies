@@ -1,17 +1,13 @@
 .swiper-slide {
-    display: inline-block;
+  display: inline-block;
 }
 
 .swiper-slide img {
-    width: 60%;
-    max-width: 300px;
-    margin: 50px 0;
+  width: 60%;
+  max-width: 300px;
+  margin: 50px 0;
 }
 
-// .swiper-pagination-bullets {
-//     bottom: 0px !important;
-// }
-
-// .swiper-pagination {
-//     position: relative !important;
-// }
+.swiper-container {
+  padding-bottom: 15px;
+}
