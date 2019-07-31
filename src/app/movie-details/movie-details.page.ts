@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { ErrorService } from '../services/error.service';
 import { LoadingService } from './../services/loading.service';
 import { MovieService } from './../services/movie.service';
 
@@ -16,7 +17,8 @@ export class MovieDetailsPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit() {
@@ -26,6 +28,10 @@ export class MovieDetailsPage implements OnInit {
       .subscribe(
         data => {
           this.movie = data;
+          this.loadingService.dismiss();
+        },
+        error => {
+          this.errorService.handle(error);
           this.loadingService.dismiss();
         }
       );

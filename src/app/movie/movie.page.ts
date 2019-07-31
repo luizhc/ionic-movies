@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { LoadingService } from '../services/loading.service';
 import { MovieService } from '../services/movie.service';
+import { ErrorService } from './../services/error.service';
 
 @Component({
   selector: 'app-movie',
@@ -20,7 +21,8 @@ export class MoviePage {
   constructor(
     private movieService: MovieService,
     private loadingService: LoadingService,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
   ) { }
 
   ionViewDidEnter() {
@@ -49,6 +51,7 @@ export class MoviePage {
           }
         },
         error => {
+          this.errorService.handle(error);
           this.loadingService.dismiss();
           if (this.isRefreshing) {
             this.refresher.complete();
